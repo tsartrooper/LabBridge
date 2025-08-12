@@ -100,3 +100,37 @@ model VerifyEmailToken {
 
   @@map("verify_email_tokens")
 }
+
+model ResearchNeed {
+  id           String    @id @default(cuid())
+  ownerId      String
+  owner        User      @relation(fields: [ownerId], references: [id])
+  title        String
+  description  String
+  requiredFormat String
+  exampleSchema Json?
+  rewardInfo   Json?
+  status       NeedStatus @default(ACTIVE)
+  createdAt    DateTime  @default(now())
+  donations    Donation[]
+}
+
+enum NeedStatus { ACTIVE CLOSED }
+
+model Donation {
+  id             String    @id @default(cuid())
+  researchNeedId String
+  researchNeed   ResearchNeed @relation(fields: [researchNeedId], references: [id])
+  donorId        String
+  donor          User      @relation(fields: [donorId], references: [id])
+  originalS3Key  String
+  processedS3Key String?
+  fileType       String
+  size           Int
+  status         DonationStatus @default(PENDING)
+  anonymizationReport Json?
+  consentGiven   Boolean
+  createdAt      DateTime  @default(now())
+}
+
+enum DonationStatus { PENDING PROCESSING ANONYMIZED APPROVED REJECTED }
