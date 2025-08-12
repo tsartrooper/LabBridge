@@ -5,7 +5,7 @@ export default async function ResearchNeedsPage() {
 
   return (
     <div className="p-4 grid gap-6">
-      {/* Form at the top */}
+
       <div className="border p-4 rounded-lg bg-white shadow">
         <h1 className="text-2xl font-bold mb-4">Submit a Research Need</h1>
         <ResearchNeedForm />
