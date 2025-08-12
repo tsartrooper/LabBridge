@@ -17,15 +17,17 @@ model User {
   emailVerified    DateTime?
   image            String?
   password         String?
-  role             Role               @default(PARTICIPANT)
+  role             String               @default("PARTICIPANT")
   salt             String?
   accounts         Account[]
   sessions         Session[]
+
   resetToken       ResetToken?
   verifyEmailToken VerifyEmailToken?
   createdAt        DateTime          @default(now())
   updatedAt        DateTime          @updatedAt
-
+  researchNeeds    ResearchNeed[]    
+  donations        Donation[] 
   @@map("users")
 }
 
@@ -101,43 +103,36 @@ model VerifyEmailToken {
   @@map("verify_email_tokens")
 }
 
-
-enum Role {
-  RESEARCHER
-  PARTICIPANT
-  ADMIN
-}
-
 model ResearchNeed {
-  id           String    @id @default(cuid())
-  ownerId      String
-  owner        User      @relation(fields: [ownerId], references: [id])
-  title        String
-  description  String
-  requiredFormat String
-  exampleSchema Json?
-  rewardInfo   Json?
-  status       NeedStatus @default(ACTIVE)
-  createdAt    DateTime  @default(now())
-  donations    Donation[]
-}
+  id              String    @id @default(cuid())
+  ownerId         String
+  owner           User      @relation(fields: [ownerId], references: [id])
+  title           String
+  description     String
+  requiredFormat  String
+  exampleSchema   String?
+  rewardInfo      String?
+  status          String    @default("ACTIVE")
+  createdAt       DateTime  @default(now())
+  donations       Donation[]
 
-enum NeedStatus { ACTIVE CLOSED }
+  @@map("research_needs")
+}
 
 model Donation {
   id             String    @id @default(cuid())
   researchNeedId String
   researchNeed   ResearchNeed @relation(fields: [researchNeedId], references: [id])
   donorId        String
-  donor          User      @relation(fields: [donorId], references: [id])
+  donor          User       @relation(fields: [donorId], references: [id])
   originalS3Key  String
   processedS3Key String?
   fileType       String
   size           Int
-  status         DonationStatus @default(PENDING)
-  anonymizationReport Json?
+  status         String     @default("PENDING")
+  anonymizationReport String?
   consentGiven   Boolean
   createdAt      DateTime  @default(now())
-}
 
-enum DonationStatus { PENDING PROCESSING ANONYMIZED APPROVED REJECTED }
+  @@map("donations")
+}
