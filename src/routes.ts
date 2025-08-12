@@ -10,6 +10,7 @@ export const authRoutes = [
   "/sign-in/magic/error",
   "/sign-up",
   "/reset-password",
+  "/"
 ];
 
-export const DEFAULT_LOGIN_REDIRECT = "/";
+export const DEFAULT_LOGIN_REDIRECT = "/dashboard";
