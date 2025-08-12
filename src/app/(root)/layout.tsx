@@ -2,7 +2,7 @@ import { Sidebar } from "@/components/layout/sidebar";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Dashboard 💵 | Real-time bidding platform",
+  title: "Dashboard 📃 | Research Papers Platform",
   description: "Bidding Platform",
 };
 
