@@ -17,7 +17,7 @@ model User {
   emailVerified    DateTime?
   image            String?
   password         String?
-  role             String?
+  role             Role               @default(PARTICIPANT)
   salt             String?
   accounts         Account[]
   sessions         Session[]
@@ -99,6 +99,13 @@ model VerifyEmailToken {
   user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("verify_email_tokens")
+}
+
+
+enum Role {
+  RESEARCHER
+  PARTICIPANT
+  ADMIN
 }
 
 model ResearchNeed {
