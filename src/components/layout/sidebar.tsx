@@ -77,13 +77,13 @@ return (
         </li>
         <li>
         <Link
-            href="/team"
+            href="/research-needs"
             className={`flex items-center p-2 rounded-lg hover:bg-accent ${
             isCollapsed ? "justify-center" : "space-x-3"
             }`}
         >
             <Users size={20} />
-            {!isCollapsed && <span>Team</span>}
+            {!isCollapsed && <span>Research Needs</span>}
         </Link>
         </li>
         <li>
