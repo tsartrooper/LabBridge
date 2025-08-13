@@ -27,7 +27,13 @@ model User {
   createdAt        DateTime          @default(now())
   updatedAt        DateTime          @updatedAt
   researchNeeds    ResearchNeed[]    
-  donations        Donation[] 
+  donations        Donation[]
+  
+  sentRequests  CollaborationRequest[] @relation("SentRequests")
+  receivedRequests CollaborationRequest[] @relation("ReceivedRequests")
+  messagesSent  Message[]      @relation("MessagesSent")
+  messagesReceived Message[]   @relation("MessagesReceived")
+
   @@map("users")
 }
 
@@ -115,6 +121,8 @@ model ResearchNeed {
   status          String    @default("ACTIVE")
   createdAt       DateTime  @default(now())
   donations       Donation[]
+  dataType        String
+  requests        CollaborationRequest[]
 
   @@map("research_needs")
 }
@@ -135,4 +143,31 @@ model Donation {
   createdAt      DateTime  @default(now())
 
   @@map("donations")
+}
+
+model CollaborationRequest {
+  id              String        @id @default(cuid())
+  sender          User          @relation("SentRequests", fields: [senderId], references: [id])
+  senderId        String
+  receiver        User          @relation("ReceivedRequests", fields: [receiverId], references: [id])
+  receiverId      String
+  researchNeed    ResearchNeed  @relation(fields: [researchNeedId], references: [id])
+  researchNeedId  String
+  status          String        @default("PENDING")
+  createdAt       DateTime      @default(now())
+
+  @@map("collaboration_requests")
+}
+
+model Message {
+  id          String   @id @default(cuid())
+  sender      User     @relation("MessagesSent", fields: [senderId], references: [id])
+  senderId    String
+  receiver    User     @relation("MessagesReceived", fields: [receiverId], references: [id])
+  receiverId  String
+  content     String
+  createdAt   DateTime @default(now())
+  researchNeedId String
+
+  @@map("messages")
 }

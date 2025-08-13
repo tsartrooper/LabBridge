@@ -22,7 +22,8 @@ export const createResearchNeedAction = authenticatedAction
         ownerId: session.user.id,
         title: input.title,
         description: input.description,
-        requiredFormat: input.dataType
+        dataType: input.dataType,
+        requiredFormat: input.requiredFormat
       },
     });
 
