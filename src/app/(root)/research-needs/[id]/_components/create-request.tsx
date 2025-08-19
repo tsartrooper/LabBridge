@@ -28,82 +28,119 @@ import { createCollaborationRequestAction } from "../actions";
 import { collaborationRequestSchema } from "@/schema/collaboration-request-schema";
 
 
-
 type CreateCollaborationRequestModalProps = {
     receiverId: string;
-    researchNeedId: string
+    researchNeedId: string;
 };
 
 export const CreateCollaborationRequestModal = ({
-    receiverId,
-    researchNeedId
+  receiverId,
+  researchNeedId,
 }: CreateCollaborationRequestModalProps) => {
     const form = useForm<z.infer<typeof collaborationRequestSchema>>({
         resolver: zodResolver(collaborationRequestSchema),
         defaultValues: {
-            message: "",
+        title: "",
+        message: "",
+        contributionType: "",
+        receiverId,
+        researchNeedId,
         },
     });
 
     const { execute, isPending } = useServerAction(
         createCollaborationRequestAction,
         {
-            onError({ err }) {
-                console.error(err);
-                toast.error("Failed to send collaboration request");
-            },
-            onSuccess() {
-                toast.success("Collaboration request sent");
-                form.reset();
-            },
+        onError({ err }) {
+            console.error(err);
+            toast.error("Failed to send collaboration request");
+        },
+        onSuccess() {
+            toast.success("Collaboration request sent");
+            form.reset();
+        },
         }
     );
 
     function onSubmit(values: z.infer<typeof collaborationRequestSchema>) {
         execute({
-            ...values,
-            receiverId,
-            researchNeedId,
+        ...values,
         });
     }
 
     return (
         <Dialog>
-            <DialogTrigger asChild>
-                <Button>
-                    Send Request
-                </Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
-                <DialogHeader>
-                    <DialogTitle>Send Collaboration Request</DialogTitle>
-                </DialogHeader>
-                <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                        <FormField
-                            control={form.control}
-                            name="message"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Message (Optional)</FormLabel>
-                                    <FormControl>
-                                        <Textarea
-                                            placeholder="Add a short note to the receiver"
-                                            className="resize-none"
-                                            {...field}
-                                        />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
+        <DialogTrigger asChild>
+            <Button variant="outline" size="sm">
+            <Plus className="mr-2 h-4 w-4" />
+            Send Request
+            </Button>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-[500px]">
+            <DialogHeader>
+            <DialogTitle>Send Collaboration Request</DialogTitle>
+            </DialogHeader>
+            <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                <FormField
+                control={form.control}
+                name="title"
+                render={({ field }) => (
+                    <FormItem>
+                    <FormLabel>Title</FormLabel>
+                    <FormControl>
+                        <Input placeholder="Eg. Data analysis support for cancer study" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                    </FormItem>
+                )}
+                />
+
+                <FormField
+                control={form.control}
+                name="contributionType"
+                render={({ field }) => (
+                    <FormItem>
+                    <FormLabel>Contribution Type</FormLabel>
+                    <FormControl>
+                        <Input placeholder="Eg. Funding, dataset, technical expertise" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                    </FormItem>
+                )}
+                />
+
+                <FormField
+                control={form.control}
+                name="message"
+                render={({ field }) => (
+                    <FormItem>
+                    <FormLabel>Message</FormLabel>
+                    <FormControl>
+                        <Textarea
+                        placeholder="Add a short note about why you want to collaborate..."
+                        className="resize-none"
+                        {...field}
                         />
-                        <Button type="submit" disabled={isPending} className="w-full">
-                            Send Request
-                            {isPending && <Loader2 className="ml-2 animate-spin size-4" />}
-                        </Button>
-                    </form>
-                </Form>
-            </DialogContent>
+                    </FormControl>
+                    <FormMessage />
+                    </FormItem>
+                )}
+                />
+
+                <Button type="submit" disabled={isPending} className="w-full">
+                {isPending ? (
+                    <>
+                    Sending...
+                    <Loader2 className="ml-2 animate-spin h-4 w-4" />
+                    </>
+                ) : (
+                    "Send Request"
+                )}
+                </Button>
+            </form>
+            </Form>
+        </DialogContent>
         </Dialog>
     );
 };

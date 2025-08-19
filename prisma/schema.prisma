@@ -11,28 +11,34 @@ datasource db {
 }
 
 model User {
-  id               String            @id @default(cuid())
-  name             String?
-  email            String            @unique
-  emailVerified    DateTime?
-  image            String?
-  password         String?
-  role             String               @default("PARTICIPANT")
-  salt             String?
-  accounts         Account[]
-  sessions         Session[]
+  id                  String            @id @default(cuid())
+  name                String?
+  email               String            @unique
+  emailVerified       DateTime?
+  image               String?
+  password            String?
+  role                String?                  
+  salt                String?
+  accounts            Account[]
+  sessions            Session[]
 
-  resetToken       ResetToken?
-  verifyEmailToken VerifyEmailToken?
-  createdAt        DateTime          @default(now())
-  updatedAt        DateTime          @updatedAt
-  researchNeeds    ResearchNeed[]    
-  donations        Donation[]
+  resetToken          ResetToken?
+  verifyEmailToken    VerifyEmailToken?
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+  researchNeeds       ResearchNeed[]    
+  donations           Donation[]
   
-  sentRequests  CollaborationRequest[] @relation("SentRequests")
-  receivedRequests CollaborationRequest[] @relation("ReceivedRequests")
-  messagesSent  Message[]      @relation("MessagesSent")
-  messagesReceived Message[]   @relation("MessagesReceived")
+  sentRequests        CollaborationRequest[] @relation("SentRequests")
+  receivedRequests    CollaborationRequest[] @relation("ReceivedRequests")
+  messagesSent        Message[]      @relation("MessagesSent")
+  messagesReceived    Message[]   @relation("MessagesReceived")
+  
+  WorkspaceFiles      WorkspaceFile[]
+  WorkspaceMessages    WorkspaceMessage[]
+
+  researcherCollabs     Collaboration[]   @relation("researcher")
+  collaboratorCollabs   Collaboration[]   @relation("collaborator")
 
   @@map("users")
 }
@@ -123,6 +129,7 @@ model ResearchNeed {
   donations       Donation[]
   dataType        String
   requests        CollaborationRequest[]
+  collaborations  Collaboration[]
 
   @@map("research_needs")
 }
@@ -146,15 +153,20 @@ model Donation {
 }
 
 model CollaborationRequest {
-  id              String        @id @default(cuid())
-  sender          User          @relation("SentRequests", fields: [senderId], references: [id])
-  senderId        String
-  receiver        User          @relation("ReceivedRequests", fields: [receiverId], references: [id])
-  receiverId      String
-  researchNeed    ResearchNeed  @relation(fields: [researchNeedId], references: [id])
-  researchNeedId  String
-  status          String        @default("PENDING")
-  createdAt       DateTime      @default(now())
+  id                String        @id @default(cuid())
+  title             String  
+  sender            User          @relation("SentRequests", fields: [senderId], references: [id])
+  senderId          String
+  receiver          User          @relation("ReceivedRequests", fields: [receiverId], references: [id])
+  receiverId        String
+  researchNeed      ResearchNeed  @relation(fields: [researchNeedId], references: [id])
+  researchNeedId    String
+  contributionType  String        @default("")
+  message           String        @default("")
+  status            String        @default("PENDING")
+  createdAt         DateTime      @default(now())
+  
+  collaboration     Collaboration?
 
   @@map("collaboration_requests")
 }
@@ -170,4 +182,47 @@ model Message {
   researchNeedId String
 
   @@map("messages")
+}
+
+model WorkspaceMessage {
+  id              String        @id @default(cuid())
+  collaboration   Collaboration @relation(fields: [collaborationId], references: [id])
+  collaborationId String
+
+  sender          User          @relation(fields: [senderId], references: [id])
+  senderId        String
+
+  content         String
+  createdAt       DateTime @default(now())
+}
+
+model Collaboration {
+  id              String                @id @default(cuid())
+  researchNeed    ResearchNeed          @relation(fields: [researchNeedId], references: [id])
+  researchNeedId  String
+  researcher      User                  @relation(name:"researcher", fields: [researcherId], references: [id])
+  researcherId    String
+
+  collaborator    User                  @relation(name:"collaborator", fields: [collaboratorId], references: [id])
+  collaboratorId  String
+  request         CollaborationRequest  @relation(fields: [requestId], references: [id])
+  requestId       String                @unique
+  status          String                @default("IN_PROGRESS")
+  createdAt       DateTime              @default(now())
+  updatedAt       DateTime              @updatedAt
+  messages        WorkspaceMessage[]
+  files           WorkspaceFile[]
+}
+
+
+model WorkspaceFile{
+  id                String                @id @default(cuid())
+  collaboration     Collaboration         @relation(fields: [collaborationId], references: [id])
+  collaborationId   String
+  sender            User                  @relation(fields: [senderId], references: [id])
+  senderId          String
+
+  fileUrl           String
+  description       String?
+  createdAt         DateTime              @default(now())
 }

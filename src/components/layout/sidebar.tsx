@@ -91,7 +91,7 @@ export const Sidebar = () => {
           </li>
           <li>
             <Link
-              href="/collaboration-requests"
+              href="/research-requests"
               className={`flex items-center p-2 rounded-lg hover:bg-accent ${
                 isCollapsed ? "justify-center" : "space-x-3"
               }`}
