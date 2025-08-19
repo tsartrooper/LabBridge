@@ -4,6 +4,8 @@ import Link from "next/link";
 import { MagicLinkForm } from "./magic-link-form";
 import { signIn } from "@/auth";
 import { AuthLayout } from "@/components/auth/layout";
+
+
 type Props = {};
 
 const SignInPage = (props: Props) => {

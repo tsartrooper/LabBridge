@@ -12,4 +12,8 @@ export const authRoutes = [
   "/reset-password",
 ];
 
+export const roleRoute = [
+  "/choose-role"  
+]
+
 export const DEFAULT_LOGIN_REDIRECT = "/dashboard";
