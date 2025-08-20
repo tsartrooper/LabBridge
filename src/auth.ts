@@ -97,20 +97,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
       return session;
     },
-
-    async signIn({ user, account, profile, email }) {
-
-      console.log("entering google oauth");
-      // If it's a new user and no role is set
-      const existingUser = await prisma.user.findUnique({ where: { email: user.email! } });
-
-      if(existingUser?.role) user.role = existingUser.role;
-
-      console.log("existing user:",existingUser);
-
-      return true; // allow login normally
-    },
-
   },
   session: {
     strategy: "jwt",
