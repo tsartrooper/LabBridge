@@ -19,6 +19,9 @@ export const createCollaborationRequestAction = authenticatedAction
                         throw new AuthenticationError();
                     }
 
+                    console.log(`collaboration request data: senderId: ${session.user.id}
+                                    receiverId: ${input.receiverId} researchNeedId: ${input.researchNeedId}`)
+
                     await prisma.collaborationRequest.create({
                         data:{
                             title: input.title,
@@ -30,6 +33,6 @@ export const createCollaborationRequestAction = authenticatedAction
                         }
                     });
 
-                    // await prisma
                     revalidatePath("/research-needs");
                 });
+

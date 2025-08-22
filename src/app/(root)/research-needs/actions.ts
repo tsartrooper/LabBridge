@@ -27,6 +27,5 @@ export const createResearchNeedAction = authenticatedAction
       },
     });
 
-    // Revalidate research needs page
     revalidatePath("/research-needs");
   });

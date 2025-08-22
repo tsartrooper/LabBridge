@@ -7,7 +7,7 @@ import Link from "next/link";
 import { PageHeader } from "@/components/globals/page-header";
 import { CreateCollaborationRequestModal } from "./_components/create-request";
 import { ComponentWrapper } from "@/components/component-wrapper";
-import { getCurrentUser } from "@/lib/session"; // adjust according to your auth setup
+import { getCurrentUser } from "@/lib/session";
 
 type Props = {
     params: {
