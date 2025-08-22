@@ -97,18 +97,18 @@ export const Sidebar = () => {
               }`}
             >
               <Handshake size={20} />
-              {!isCollapsed && <span>Collaboration Requests</span>}
+              {!isCollapsed && <span>Requests</span>}
             </Link>
           </li>
           <li>
             <Link
-              href="/messages"
+              href="/collaborations"
               className={`flex items-center p-2 rounded-lg hover:bg-accent ${
                 isCollapsed ? "justify-center" : "space-x-3"
               }`}
             >
               <Mail size={20} />
-              {!isCollapsed && <span>Messages</span>}
+              {!isCollapsed && <span>Collaborations</span>}
             </Link>
           </li>
           <li>
