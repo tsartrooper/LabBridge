@@ -1,13 +1,7 @@
 
-# NextAuth GitHub Template
+# LabBridge
 
-This is a GitHub template project using the latest version of NextAuth.js. It implements the following authentication methods:
-
-- Google Sign-in
-- Magic Link Sign-in
-- Sign-in with Email
-- Forgot Password
-- Reset Password
+This application facilitates networking between researchers and collaborators.
 
 This template provides a quick and easy way to get started with authentication in your Next.js projects.
 
@@ -41,16 +35,6 @@ To get the project running locally, follow these steps:
 
 ## 📁 Project Structure
 
-The project follows a structured approach with the latest Next.js layout:
-
-- **data-access/**: This folder contains all files interacting with the database. It includes Prisma models and database operations.
-  
-- **use-cases/**: This folder contains logic implementations for different functionalities. Business logic is separated from data access to ensure modularity.
-  
-- **emails/**: This folder contains templates for sending emails, such as reset password emails and magic link emails.
-
-The rest of the files follow the latest Next.js structure, leveraging App Router for an optimized developer experience.
-
 ---
 
 ## 🖼️ Screenshots
@@ -77,5 +61,3 @@ The rest of the files follow the latest Next.js structure, leveraging App Router
 - **NextAuth.js**
 - **Prisma**
 - **PNPM**
-
-Feel free to modify this template according to your project's needs. Contributions and suggestions are always welcome!
