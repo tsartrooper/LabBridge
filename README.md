@@ -3,8 +3,6 @@
 
 This application facilitates networking between researchers and collaborators.
 
-This template provides a quick and easy way to get started with authentication in your Next.js projects.
-
 ---
 
 ## 🚀 Quick Start
@@ -56,3 +54,4 @@ To get the project running locally, follow these steps:
 - **NextAuth.js**
 - **Prisma**
 - **PNPM**
+- **SupaBase**
