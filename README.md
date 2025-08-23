@@ -41,7 +41,7 @@ To get the project running locally, follow these steps:
 
 <table>
   <tr>
-    <td><img width="600" alt="Screenshot 2024-09-15 at 2 32 19 PM" src="[https://github.com/user-attachments/assets/34d91483-e1ad-47b3-91d2-cf0093ac22aa](https://github.com/tsartrooper/LabBridge/blob/eb2845bfed3773d273c6d000c538ea8373674719/Screenshot%202025-08-23%20144655.png)"></td>
+    <td><img width="600" alt="Screenshot 2024-09-15 at 2 32 19 PM" src="https://github.com/tsartrooper/LabBridge/blob/eb2845bfed3773d273c6d000c538ea8373674719/Screenshot%202025-08-23%20144655.png"></td>
     <td><img width="600" alt="Screenshot 2024-09-15 at 2 32 35 PM" src="https://github.com/user-attachments/assets/b830cb18-1070-4ce2-bb09-1f2727c84f38"></td>
   </tr>
   <tr>
