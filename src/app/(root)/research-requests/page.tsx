@@ -45,9 +45,9 @@ export default async function ResearchRequestsPage() {
 
   const safeRequests = requests || [];
 
-  const pending = safeRequests.filter((r) => r.status === "PENDING");
-  const accepted = safeRequests.filter((r) => r.status === "ACCEPTED");
-  const rejected = safeRequests.filter((r) => r.status === "REJECTED");
+  const pending = safeRequests.filter((r:any) => r.status === "PENDING");
+  const accepted = safeRequests.filter((r:any) => r.status === "ACCEPTED");
+  const rejected = safeRequests.filter((r:any) => r.status === "REJECTED");
 
   const renderRequests = (list: typeof safeRequests) => {
     if (list.length === 0) {
@@ -55,7 +55,7 @@ export default async function ResearchRequestsPage() {
     }
     return (
       <div className="space-y-4">
-        {list.map((req) => (
+        {list.map((req:any) => (
           <RequestCard 
             key={req.id} 
             req={req} 

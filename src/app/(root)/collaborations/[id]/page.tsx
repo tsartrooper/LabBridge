@@ -102,7 +102,7 @@ const collaboration = await prisma.collaboration.findUnique({
         }
       }
     }
-  });
+  }) as any;
 
   if (!collaboration) {
     notFound();
@@ -159,7 +159,7 @@ const collaboration = await prisma.collaboration.findUnique({
                       No messages yet. Start the conversation!
                     </p>
                   ) : (
-                    collaboration.messages.map((message) => (
+                    collaboration.messages.map((message:any) => (
                       <div
                         key={message.id}
                         className={`flex ${
@@ -204,7 +204,7 @@ const collaboration = await prisma.collaboration.findUnique({
                       No files shared yet.
                     </p>
                   ) : (
-                    collaboration.files.map((file) => (
+                    collaboration.files.map((file:any) => (
                       <div
                         key={file.id}
                         className="flex items-center justify-between p-3 border rounded-lg"

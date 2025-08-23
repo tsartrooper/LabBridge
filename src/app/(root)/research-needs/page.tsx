@@ -31,7 +31,7 @@ export default async function ResearchNeedsPage() {
         </Card>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {needs.map((need) => (
+          {needs.map((need:any) => (
             <Card key={need.id}>
               <CardHeader>
                 <div className="flex items-center gap-2">

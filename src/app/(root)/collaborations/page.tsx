@@ -65,7 +65,7 @@ export default async function CollaborationsPage() {
       }
     },
     orderBy: { createdAt: "desc" },
-  });
+  }) as any;
 
   return (
     <ComponentWrapper>
@@ -87,7 +87,7 @@ export default async function CollaborationsPage() {
           </Card>
         ) : (
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {collaborations.map((collab) => {
+            {collaborations.map((collab:any) => {
               const isResearcher = collab.researcherId === userId;
               const partner = isResearcher ? collab.collaborator : collab.researcher;
               const role = isResearcher ? "Researcher" : "Collaborator";

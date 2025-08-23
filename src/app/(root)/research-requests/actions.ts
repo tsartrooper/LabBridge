@@ -31,7 +31,7 @@ export const updateRequestStatus = authenticatedAction
             throw new Error("Collaboration request not found");
         }
 
-        await prisma.$transaction(async (tx) => {
+        await prisma.$transaction(async (tx:any) => {
             await tx.collaborationRequest.update({
                 where: {
                     id: input.requestId,
