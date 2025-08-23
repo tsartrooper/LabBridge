@@ -42,11 +42,11 @@ To get the project running locally, follow these steps:
 <table>
   <tr>
     <td><img width="600" alt="Screenshot 2024-09-15 at 2 32 19 PM" src="https://github.com/tsartrooper/LabBridge/blob/eb2845bfed3773d273c6d000c538ea8373674719/Screenshot%202025-08-23%20144655.png"></td>
-    <td><img width="600" alt="Screenshot 2024-09-15 at 2 32 35 PM" src="https://github.com/user-attachments/assets/b830cb18-1070-4ce2-bb09-1f2727c84f38"></td>
+    <td><img width="600" alt="Screenshot 2024-09-15 at 2 32 35 PM" src="https://github.com/tsartrooper/LabBridge/blob/main/Screenshot%202025-08-23%20144739.png"></td>
   </tr>
   <tr>
-    <td><img width="600" alt="Screenshot 2024-09-15 at 2 32 44 PM" src="https://github.com/user-attachments/assets/41b98e70-79d0-4e85-b96e-acf3fbf7b2e5"></td>
-    <td><img width="600" alt="Screenshot 2024-09-15 at 2 32 54 PM" src="https://github.com/user-attachments/assets/3b29ecf5-7aa7-47f4-a0fa-45e140b04581"></td>
+    <td><img width="600" alt="Screenshot 2024-09-15 at 2 32 44 PM" src="https://github.com/tsartrooper/LabBridge/blob/main/Screenshot%202025-08-23%20145033.png"></td>
+    <td><img width="600" alt="Screenshot 2024-09-15 at 2 32 54 PM" src="https://github.com/tsartrooper/LabBridge/blob/main/Screenshot%202025-08-23%20144718.png"></td>
   </tr>
 </table>
 
