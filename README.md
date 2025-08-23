@@ -30,11 +30,6 @@ To get the project running locally, follow these steps:
    ```bash
    pnpm run dev
    ```
-
----
-
-## 📁 Project Structure
-
 ---
 
 ## 🖼️ Screenshots
