@@ -16,7 +16,8 @@ export async function createResearchNeed(
             description,
             requiredFormat,
             exampleSchema:"",
-            rewardInfo:""
+            rewardInfo:"",
+            dataType: ""
         }
     })
 }
