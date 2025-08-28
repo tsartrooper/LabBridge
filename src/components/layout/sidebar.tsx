@@ -69,17 +69,6 @@ export const Sidebar = () => {
           </li>
           <li>
             <Link
-              href="/donations"
-              className={`flex items-center p-2 rounded-lg hover:bg-accent ${
-                isCollapsed ? "justify-center" : "space-x-3"
-              }`}
-            >
-              <Gift size={20} />
-              {!isCollapsed && <span>Donations</span>}
-            </Link>
-          </li>
-          <li>
-            <Link
               href="/research-needs"
               className={`flex items-center p-2 rounded-lg hover:bg-accent ${
                 isCollapsed ? "justify-center" : "space-x-3"
@@ -109,28 +98,6 @@ export const Sidebar = () => {
             >
               <Mail size={20} />
               {!isCollapsed && <span>Collaborations</span>}
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/settings"
-              className={`flex items-center p-2 rounded-lg hover:bg-accent ${
-                isCollapsed ? "justify-center" : "space-x-3"
-              }`}
-            >
-              <Settings size={20} />
-              {!isCollapsed && <span>Settings</span>}
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/help"
-              className={`flex items-center p-2 rounded-lg hover:bg-accent ${
-                isCollapsed ? "justify-center" : "space-x-3"
-              }`}
-            >
-              <HelpCircle size={20} />
-              {!isCollapsed && <span>Help</span>}
             </Link>
           </li>
         </ul>
