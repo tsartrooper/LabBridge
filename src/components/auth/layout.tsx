@@ -32,7 +32,7 @@ export const AuthLayout = ({ children, type, text }: Props) => {
                 {type}{" "}
                 {type !== "Forgot Password" &&
                   type !== "Reset Password" &&
-                  "to Next App"}
+                  "LabBridge"}
               </h1>
               <p className="text-[#747686] text-sm">{text}</p>
             </div>
